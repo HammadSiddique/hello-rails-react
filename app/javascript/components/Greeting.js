@@ -1,5 +1,6 @@
 import React, {useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
+import { getMessage } from '../redux/greetingsReducer';
 import axios from 'axios'
 
 const Greeting = () => {
