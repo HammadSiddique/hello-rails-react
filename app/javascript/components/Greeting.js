@@ -4,17 +4,24 @@ import axios from 'axios'
 
 const Greeting = () => {
     const dispatch = useDispatch();
-    const message = useSelector((state)=> state.message);
+    const message = useSelector((state)=> state.greeting);
+
+    async function fetchMessage() {
+        await axios.get('api/v1/messages').then((response) => {
+          dispatch(getMessage(response.data.greeting));
+        });
+      }
 
     useEffect(() => {
-        dispatch(fetchMessage());
+    fetchMessage();
     }, []);
 
     return (
         <div>
-            <h1>{message.greeting}</h1>
+            <h1>{message}</h1>
+            <button onClick={() => fetchMessage()}>Generate greeting message</button>
         </div>
-    )
-}
+    );
+};
 
 export default Greeting;

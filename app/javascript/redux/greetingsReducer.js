@@ -8,7 +8,9 @@ const getMessage = (message) => ({
 });
 
 const fetchMessage = async() => {
-    return axios.get('api/v1/messages').then((response)=> response.data)
+    await axios.get('api/v1/messages').then((response)=> {
+        return response.data.greeting 
+    })
 };
 
 export default function greetingsReducer(state = [], action ={}) {
